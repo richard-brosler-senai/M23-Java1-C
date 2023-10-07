@@ -110,4 +110,25 @@ public class Tabuleiro {
 		return false;
 	}
 	
+	public boolean isDisponivel(String posicao) {
+		String regex = "[a-zA-Z]\\d{2}";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(posicao);
+		String par01=null, par02=null;
+		if (m.find()) {
+			par01 = m.group();
+		}
+		if (m.find()) {
+			par02 = m.group();
+		}
+		
+		int linIni, linFim, colIni, colFim;
+		
+		linIni = par01.charAt(0) - 65;
+		linFim = par02.charAt(0) - 65;
+		colIni = Integer.parseInt(par01.substring(1)) - 1;
+		colFim = Integer.parseInt(par02.substring(1)) - 1;
+		
+		return false;
+	}
 }//fim da classe
