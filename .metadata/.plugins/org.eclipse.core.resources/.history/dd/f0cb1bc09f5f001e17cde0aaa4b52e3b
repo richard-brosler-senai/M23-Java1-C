@@ -1,0 +1,83 @@
+package br.com.senaisp.bauru.richard.batalhanaval;
+
+public class Tabuleiro {
+	private static final char IS_PREENCHIDO = '▓';
+	private static final char IS_LIMPO = '░';
+	private static final char IS_BOMB = '¤';
+	private static final char IS_BOMBOK = '†';
+	//Campos
+	private String nomeJogador;
+	private boolean[][] tabuleiroAtaque;
+	private Embarcacao[][] tabuleiroEmbarcacao;
+	private boolean terminado;
+	//Constructor
+	public Tabuleiro(String nome) {
+		nomeJogador = nome;
+		terminado = false;
+		tabuleiroAtaque = new boolean[10][10];
+		tabuleiroEmbarcacao = new Embarcacao[10][10];
+		for (int lin=0;lin<10;lin++) {
+			for (int col=0;col<10;col++) {
+				tabuleiroAtaque[lin][col] = false;
+				tabuleiroEmbarcacao[lin][col] = null;
+			}
+		}
+	}
+	public String getNomeJogador() {
+		return nomeJogador;
+	}
+	public boolean isTerminado() {
+		return terminado;
+	}
+	//metodos
+	public void mostrarTabuleiro(boolean visualizarEmb) {
+		                  //1234567890123
+		System.out.println("  12345678910");
+		for(int lin=0;lin<10;lin++) {
+			char let = 'A';
+			let += lin;
+			System.out.print(""+let+" ");
+			for (int col=0;col<10;col++) {
+				char ret = IS_LIMPO;
+				if (tabuleiroEmbarcacao[lin][col]!=null) {
+					if (visualizarEmb){
+						ret = IS_PREENCHIDO;
+					}
+					if (tabuleiroAtaque[lin][col]) {
+						ret = IS_BOMBOK;
+					}
+				} else { //não tem embarcação na posição
+					if (tabuleiroAtaque[lin][col]) {
+						ret = IS_BOMB;
+					}
+				}//fim do else
+				System.out.print(ret);
+			}//fim do for coluna
+			System.out.println();
+		}//fim do for de linha
+	}//fim do método
+	
+	public void montarTabuleiro() {
+		//0 - Porta aviões
+		//1, 2 - Contra torpedeiros
+		//3, 4, 5 - Submarinos
+		//6, 7, 8, 9 - Barcos
+		for (int id=0;id<10;id++) {
+			Embarcacao emb;
+			switch(id) {
+			case 0 : 
+				emb = new Embarcacao(4); break;
+			case 1 :
+			case 2 : 
+				emb = new Embarcacao(3); break;
+			case 3 :
+			case 4 :
+			case 5 : 
+				emb = new Embarcacao(2); break;
+			default :
+				emb = new Embarcacao(1); break;
+			}
+		}
+	}
+	
+}//fim da classe

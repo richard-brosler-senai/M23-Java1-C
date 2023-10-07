@@ -1,0 +1,10 @@
+package br.com.senaisp.bauru.richard.batalhanaval;
+
+public class TesteTabuleiro {
+
+	public static void main(String[] args) {
+		Tabuleiro tab = new Tabuleiro("Richard");
+		tab.mostrarTabuleiro(true);
+	}
+
+}
