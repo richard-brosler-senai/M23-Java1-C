@@ -29,11 +29,9 @@ public class Utils {
 		// retornando o valor
 		return retorno;
 	}
-
 	public static String entradaDados(Scanner sc, String msg, int tamMin, int tamMax, String pattern) {
 		return entradaDados(sc,msg,tamMin,tamMax,pattern,true);
 	}
-
 	public static String entradaDados(Scanner sc, String msg, int tamMin, int tamMax, String pattern, boolean checkBuffer) {
 		String retorno = "";
 		// esse teste é para pegar o enter a mais que vem do

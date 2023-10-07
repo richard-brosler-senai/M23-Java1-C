@@ -7,7 +7,7 @@ public class TesteTabuleiro {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Tabuleiro tab = new Tabuleiro("Richard",sc);
-		tab.montarTabuleiro();
+		tab.montarTabuleiro(true);
 		tab.mostrarTabuleiro(true);
 	}
 
