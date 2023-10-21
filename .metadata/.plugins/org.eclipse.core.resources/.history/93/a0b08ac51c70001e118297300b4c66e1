@@ -243,10 +243,10 @@ public class Tabuleiro extends TabuleiroBase {
 				tabuleiroEmbarcacao[lin][col].addDano(1);
 				tabuleiroAtaque[lin][col] = true;
 				//fazendo as marcações de entorno
-				if (lin>0 && tabuleiroEmbarcacao[lin-1][col]==null)
+				if (lin>0 && tabuleiroEmbarcacao[lin+1][col]==null)
 					tabuleiroAtaque[lin-1][col] = true;
 				
-				if (lin<9 && tabuleiroEmbarcacao[lin+1][col]==null)
+				if (lin<9 && tabuleiroEmbarcacao[lin-1][col]==null)
 					tabuleiroAtaque[lin+1][col] = true;
 				
 				if (col>0 && tabuleiroEmbarcacao[lin][col-1]==null)

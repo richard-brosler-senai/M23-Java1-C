@@ -222,14 +222,11 @@ public class Tabuleiro extends TabuleiroBase {
 		char letra = 'A';
 		Random rnd = new Random();
 		int col = rnd.nextInt(10) + 1;
-		letra += rnd.nextInt(10);
-		String ret = "" + letra; 
-			   ret += col;
+		String ret = "" + (letra + rnd.nextInt(10)) + col;
 		return ret;
 	}
 	
-	public boolean sofrerAtaque(String posicao) {
-		boolean ret = false;
+	public void sofrerAtaque(String posicao) {
 		if (!isTerminado()) {
 			int lin = posicao.charAt(0) - 65;
 			int col = Integer.parseInt(posicao.substring(1)) - 1;
@@ -239,14 +236,13 @@ public class Tabuleiro extends TabuleiroBase {
 				throw new RuntimeException("Coluna inválida!");
 			//verificando se na posição existe uma embarcação
 			if (tabuleiroEmbarcacao[lin][col]!=null) {
-				ret = true;
 				tabuleiroEmbarcacao[lin][col].addDano(1);
 				tabuleiroAtaque[lin][col] = true;
 				//fazendo as marcações de entorno
-				if (lin>0 && tabuleiroEmbarcacao[lin-1][col]==null)
+				if (lin>0 && tabuleiroEmbarcacao[lin+1][col]==null)
 					tabuleiroAtaque[lin-1][col] = true;
 				
-				if (lin<9 && tabuleiroEmbarcacao[lin+1][col]==null)
+				if (lin<9 && tabuleiroEmbarcacao[lin-1][col]==null)
 					tabuleiroAtaque[lin+1][col] = true;
 				
 				if (col>0 && tabuleiroEmbarcacao[lin][col-1]==null)
@@ -255,18 +251,13 @@ public class Tabuleiro extends TabuleiroBase {
 				if (col<9 && tabuleiroEmbarcacao[lin][col+1]==null)
 					tabuleiroAtaque[lin][col+1] = true;
 				
-				
-				
 				//verificando se foi terminado o jogo
-				terminado = true;
-				for (Embarcacao emb : listaEmbarcacao) {
-					terminado = terminado && emb.isEliminado();
-				}
+				
+				
 			} else { //if existência de embarcação
 				tabuleiroAtaque[lin][col] = true;
 			}
 		}
-		return ret;
 	}
 	
 }//fim da classe

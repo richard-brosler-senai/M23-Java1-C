@@ -31,7 +31,6 @@ public class TesteTabuleiro {
 			do {
 				//Computador gerou lance aleatório
 				posicao = tab.gerarPosicaoAleatoria();
-				System.out.println(posicao);
 				acertou = tab.sofrerAtaque(posicao);
 				
 				System.out.println(tab.getNomeJogador());
